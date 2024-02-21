@@ -3,20 +3,16 @@ consumo = float(input("Informe o valor consumido kw/h:"))
 tipo = input("Informe o tipo do setor: R - residencial, C - comercial, I - industrial").upper()
 
 tarifas = {
-    'R': {'limite':500, 'baixa':0.40, 'alta':0.65},
-    'C': {'limite':1000, 'baixa':0.55, 'alta':0.60},
-    'I': {'limite':5000, 'baixa':0.55, 'alta':0.60}
+    'R': {'limite':500, 'baixa':0.40, 'alta':0.65, 'client':'A sua residência'},
+    'C': {'limite':1000, 'baixa':0.55, 'alta':0.60, 'client': 'O seu comércio'},
+    'I': {'limite':5000, 'baixa':0.55, 'alta':0.60, 'client': 'A sua indústria'}
 }
 
 if tipo not in tarifas:
     print("Setor invalido.")
     exit()
 
-cliente = {
-    'R': {'A sua residência'},
-    'C': {'O seu comércio'},
-    'I': {'A sua indústria'}
-}[tipo]
+cliente = tarifas[tipo]['client']
 
 if consumo <= tarifas[tipo]['limite']:
     tarifa =  tarifas[tipo]['baixa']
